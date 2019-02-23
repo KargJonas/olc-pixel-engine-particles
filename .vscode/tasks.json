@@ -1,0 +1,30 @@
+{
+  "version": "2.0.0",
+  // "linux": {
+  //   "options": {
+  //     "env": {
+  //       "PATH": "${config:terminal.integrated.env.linux.PATH}"
+  //     }
+  //   }
+  // },
+  "presentation": {
+    "echo": false,
+    "reveal": "always",
+    "focus": true,
+    "panel": "shared",
+    "clear": false,
+    "showReuseMessage": true
+  },
+  "tasks": [
+    {
+      "label": "build",
+      "command": "bash ./build.sh",
+      "type": "shell",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}
