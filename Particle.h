@@ -1,23 +1,45 @@
-#include <math.h>
 #include "Vec.h"
+#include <iostream>
+#include <math.h>
+
+struct color {
+  int r;
+  int g;
+  int b;
+};
 
 class Particle {
   public:
+  color c;
+  int type;
   float mass;
   vec2f pos;
   vec2f vel;
   vec2f acc;
 
-  Particle() { }
+  Particle() {}
   Particle(int x, int y, float _mass)
       : mass(_mass)
       , pos(vec2f(x, y))
       , vel(vec2f(0, 0))
       , acc(vec2f(0, 0))
+      , type(rand() % 3 + 1)
   {
+    c.r = 0;
+    c.g = 0;
+    c.b = 0;
+
+    if (type == 1) {
+      c.r = 255;
+    } else if (type == 2) {
+      c.g = 255;
+    } else {
+      c.b = 255;
+    }
   }
 
-  void update() {
+  void update()
+  {
     vel += acc;
 
     vec2f step = pos + vel;
@@ -37,14 +59,14 @@ class Particle {
     // vel.limit(5);
   }
 
-  void applyForce(vec2f force) {
+  void applyForce(vec2f force)
+  {
     acc += force;
   }
 
-  float dist(Particle other) {
+  float dist(Particle other)
+  {
     return sqrt(
-      pow(other.pos.x - pos.x, 2) +
-      pow(other.pos.y - pos.y, 2)
-    );
+        pow(other.pos.x - pos.x, 2) + pow(other.pos.y - pos.y, 2));
   }
 };
